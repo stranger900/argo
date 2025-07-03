@@ -1,11 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
+  annotations:
+    argocd.argoproj.io/tracking-id: test-argo:/Service:test-argo/kuber-service
   name: kuber-service
+  namespace: test-argo
 spec:
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 8000
   selector:
     app: http-server
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8000
